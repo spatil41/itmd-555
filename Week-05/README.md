@@ -2,6 +2,6 @@
 
 ### In the following screenshot, I have set aa timer of 5 secs on my seek bar.
 
-![alt text](images/Screenshot_1519659906.png )
+![alt text](Images/Screenshot_1519659906.png )
 
 
