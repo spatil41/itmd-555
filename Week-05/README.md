@@ -1,6 +1,6 @@
 ## Following are the screenshots of my applications.
 
-### In the following screenshot, I have set aa timer of 5 secs on my seek bar i.e. UI 1.
+### In the following screenshot, I have set a timer of 5 secs on my seek bar i.e. UI 1.
 
 ![alt text](Images/13.PNG  )
 
