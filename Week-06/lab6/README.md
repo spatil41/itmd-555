@@ -2,7 +2,7 @@
 
 ### This is the GUI of the application.
 
-![alt text](lab6/Images/Screenshot_1521428789.PNG  )
+![](Images/gui.png  )
 
 ### Here, I am starting the background service
 
