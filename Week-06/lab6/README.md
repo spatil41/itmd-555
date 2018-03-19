@@ -22,4 +22,4 @@
 
 ### Here, I am destroying the service.
 
-![alt text](Images/Screenshot_1521428820.PNG  )
+![alt text](Images/destroy.png  )
