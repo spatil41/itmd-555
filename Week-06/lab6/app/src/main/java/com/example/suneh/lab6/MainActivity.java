@@ -1,5 +1,8 @@
 package com.example.suneh.lab6;
 
+import android.content.ComponentName;
+import android.content.ServiceConnection;
+import android.os.IBinder;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.os.SystemClock;
@@ -10,6 +13,7 @@ import android.widget.TextView;
 import android.os.Handler;
 import android.util.Log;
 import android.content.Intent;
+import com.example.suneh.lab6.service.MyBinder;
 
 public class MainActivity extends AppCompatActivity {
     TextView textView ;
@@ -25,6 +29,12 @@ public class MainActivity extends AppCompatActivity {
     ArrayAdapter<String> adapter ;
 
     String msg = "Android : ";
+    private static final String TAG = MainActivity.class.getSimpleName();
+
+    service mBoundService;
+    boolean mServiceBound = false;
+    //private ServiceConnection mServiceConnection;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -109,11 +119,32 @@ public class MainActivity extends AppCompatActivity {
     {
         startService(new Intent(getBaseContext(), service.class));
     }
-
     // Method to stop the service
-    public void stopService(View view)
+    public boolean stopService(Intent view)
     {
-        stopService(new Intent(getBaseContext(), service.class));
+        //stopService(new Intent(getBaseContext(), service.class));
+        if (mServiceBound) {
+            unbindService(mServiceConnection);
+            mServiceBound = false;
+        }
+        Intent intent = new Intent(MainActivity.this,service.class);
+        stopService(intent);
+
+        return false;
     }
+   private ServiceConnection mServiceConnection = new ServiceConnection() {
+
+        @Override
+        public void onServiceDisconnected(ComponentName name) {
+            mServiceBound = false;
+        }
+
+        @Override
+        public void onServiceConnected(ComponentName name, IBinder service) {
+            MyBinder myBinder = (MyBinder) service;
+            mBoundService = myBinder.getService();
+            mServiceBound = true;
+        }
+    };
 }
 
