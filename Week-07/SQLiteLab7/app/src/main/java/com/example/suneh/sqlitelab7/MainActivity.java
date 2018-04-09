@@ -32,7 +32,43 @@ public class MainActivity extends AppCompatActivity implements OnItemSelectedLis
         RateFunction();
         //spinnerFunction();
 
+
     }
+
+    public void RateFunction(){
+        SQLHelper db = null;
+
+        try {
+            db = new SQLHelper( this );
+
+            // remove enteries if exist in the table
+            db.deleteAllEnteries();
+            // add books
+            db.addBook( new Book( "Professional Android 4 Application", "Reto Meier",3 ) );
+            db.addBook( new Book( "Beginning Android 4 Application  Development", "WeiMeng Lee",4) );
+            db.addBook( new Book( "Programming Android", "Wallace Jackson",2) );
+            db.addBook( new Book( "Hello, Android", "Wallace Jackson",5 ) );
+
+
+            BookList = db.getAllBooks();
+
+            title = new ArrayList<String>();
+
+
+            for(int i=0;i<BookList.size();i++){
+
+                title.add(String.valueOf(BookList.get( i ).title));
+
+            }
+
+            Log.d( "jjjjjjjj",String.valueOf(BookList.get( 0 ).title));
+            ListGeneration();
+
+        } catch (Exception e) {
+            Toast.makeText( this, "Ooppss.. Error Occured..!!", Toast.LENGTH_LONG ).show();
+        }
+    }
+
  /*public void spinnerFunction(){
 
         spinner = (Spinner)findViewById(R.id.spinner);
@@ -73,39 +109,6 @@ public class MainActivity extends AppCompatActivity implements OnItemSelectedLis
         // TODO Auto-generated method stub
     }
 
-    public void RateFunction(){
-        SQLHelper db = null;
-
-        try {
-            db = new SQLHelper( this );
-
-            // remove enteries if exist in the table
-            db.deleteAllEnteries();
-            // add books
-            db.addBook( new Book( "Professional Android 4 Application", "Reto Meier",3 ) );
-            db.addBook( new Book( "Beginning Android 4 Application  Development", "WeiMeng Lee",4) );
-            db.addBook( new Book( "Programming Android", "Wallace Jackson",2) );
-            db.addBook( new Book( "Hello, Android", "Wallace Jackson",5 ) );
-
-
-            BookList = db.getAllBooks();
-
-            title = new ArrayList<String>();
-
-
-            for(int i=0;i<BookList.size();i++){
-
-                title.add(String.valueOf(BookList.get( i ).title));
-
-            }
-
-            Log.d( "jjjjjjjj",String.valueOf(BookList.get( 0 ).title));
-            ListGeneration();
-
-        } catch (Exception e) {
-            Toast.makeText( this, "Ooppss.. Error Occured..!!", Toast.LENGTH_LONG ).show();
-        }
-    }
 
     ListView ViewBooklist;
     BookRating ratingList;
