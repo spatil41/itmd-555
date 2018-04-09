@@ -19,7 +19,7 @@ public class SQLHelper extends SQLiteOpenHelper {
 
     public static final int DATABASE_VERSION = 1;
     public static final String DB_NAME = "BooksDb";
-    public static final String DB_LOCATION = "/data/data/com.example.suneh.dbanalyticsproject/databases/";
+    public static final String DB_LOCATION = "/data/data/com.example.suneh.sqlitelab/databases/";
     public static Context context;
     public static SQLiteDatabase database;
     public static SQLiteOpenHelper databaseHandler;
@@ -48,7 +48,7 @@ public class SQLHelper extends SQLiteOpenHelper {
     }
 
     /**
-     * close the database
+     * To close the database
      */
     public void closeDatabase() {
         if (database != null) {
@@ -59,12 +59,12 @@ public class SQLHelper extends SQLiteOpenHelper {
 
 
     /**
-     * add a book to Book table in BookDB
+     * To add the books to Book table in BooksDb
      */
 
     public void addBook(Book book) {
 
-        //SQLiteDatabase db = (new SqlHelper(context)).getWritableDatabase();
+        
         SQLiteDatabase db= this.getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put(BookContract.BookEntry.COLUMN_NAME_TITLE, book.getTitle());
@@ -72,9 +72,6 @@ public class SQLHelper extends SQLiteOpenHelper {
         values.put(BookContract.BookEntry.COLUMN_NAME_RATING, book.getRating() );
         database.insert(BookContract.BookEntry.TABLE_NAME, null, values);
         Log.i("AddBook()", "\t" + book.toString());
-
-
-        //List<Book> books = getAllBooks();
     }
 
     public Cursor getInformation(SQLiteDatabase sqLiteDatabase)
@@ -84,19 +81,19 @@ public class SQLHelper extends SQLiteOpenHelper {
         return  cursor;
     }
     /**
-     * get all the books from the table
+     *To  get all the books from the table
      *
      * @return list of books in the table
      */
     public List<Book> getAllBooks() {
         Log.d( "getAllBooks","================");
-        // SQLiteDatabase db = (new SqlHelper(context)).getReadableDatabase();
+       
         List<Book> books = new ArrayList<>();
         Book book;
         Cursor cursor = database.query(BookContract.BookEntry.TABLE_NAME, null, null, null, null, null, null);
         String booksString = "\t\t\t[";
         while (cursor.moveToNext()) {
-            // add books to the list
+            // To add books to the list
             book= new Book();
             book.setId(Integer.parseInt(cursor.getString(cursor.getColumnIndex(BookContract.BookEntry.ID))));
             book.setRating(Integer.parseInt(cursor.getString(cursor.getColumnIndex(BookContract.BookEntry.COLUMN_NAME_RATING))));
@@ -104,7 +101,7 @@ public class SQLHelper extends SQLiteOpenHelper {
             book.setAuthor(cursor.getString(cursor.getColumnIndex(BookContract.BookEntry.COLUMN_NAME_AUTHOR)));
             books.add(book);
 
-            // books string to display in log
+           
             booksString += "Book [ ";
             for (String col : cursor.getColumnNames()) {
 
@@ -118,7 +115,7 @@ public class SQLHelper extends SQLiteOpenHelper {
     }
 
     /**
-     * update book in the database
+     * To update the book in the database
      *
      * @param book book details to be updated
      * @return number of rows changed
@@ -137,7 +134,7 @@ public class SQLHelper extends SQLiteOpenHelper {
     }
 
     /**
-     * delete book from the database
+     *To delete a book from the database
      *
      * @param book book to be deleted
      */
@@ -148,7 +145,7 @@ public class SQLHelper extends SQLiteOpenHelper {
     }
 
     /**
-     * delete all the enteries from the table
+     * To delete all the books from the table
      */
     public void deleteAllEnteries() {
         database.execSQL(BookContract.SQL_DELETE_ALLENTERIES);
