@@ -29,13 +29,13 @@ public class MainActivity extends AppCompatActivity implements OnItemSelectedLis
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate( savedInstanceState );
         setContentView( R.layout.activity_main );
-        RateFunction();
+        DisplayRate();
         //spinnerFunction();
 
 
     }
 
-    public void RateFunction(){
+    public void DisplayRate(){
         SQLHelper db = null;
 
         try {
