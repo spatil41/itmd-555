@@ -1,24 +1,18 @@
 package com.example.suneh.sqlitelab7;
 
-
-        import android.database.Cursor;
-        import android.database.sqlite.SQLiteDatabase;
-        import android.os.Bundle;
-        import android.support.v7.app.AppCompatActivity;
-        import android.util.Log;
-        import android.widget.ListAdapter;
-        import android.widget.ArrayAdapter;
-        import android.widget.Spinner;
-        import android.widget.ListView;
-        import android.widget.SimpleCursorAdapter;
-        import android.widget.Toast;
-        import android.widget.AdapterView;
-        import android.widget.AdapterView.OnItemSelectedListener;
-        import android.view.View;
-
-        import java.util.*;
-        import java.util.SimpleTimeZone;
-
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
+import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
+import android.widget.ArrayAdapter;
+import android.widget.Spinner;
+import android.widget.ListView;
+import android.widget.Toast;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemSelectedListener;
+import android.view.View;
+import java.util.*;
 
 public class MainActivity extends AppCompatActivity implements OnItemSelectedListener{
     ListView listView;
@@ -39,10 +33,7 @@ public class MainActivity extends AppCompatActivity implements OnItemSelectedLis
         //spinnerFunction();
 
     }
-
-
-
-    /*public void spinnerFunction(){
+ /*public void spinnerFunction(){
 
         spinner = (Spinner)findViewById(R.id.spinner);
 
@@ -74,10 +65,7 @@ public class MainActivity extends AppCompatActivity implements OnItemSelectedLis
 
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-        // On selecting a spinner item
-        //String item = parent.getItemAtPosition(position).toString();
-        //  Log.d( "00000000000000000","");
-        // Showing selected spinner item
+
         Toast.makeText(parent.getContext(), "Author's Name: "+BookList.get( position ).author+"\nRating: "+BookList.get( position ).rating, Toast.LENGTH_LONG).show();
     }
 
@@ -108,26 +96,24 @@ public class MainActivity extends AppCompatActivity implements OnItemSelectedLis
             for(int i=0;i<BookList.size();i++){
 
                 title.add(String.valueOf(BookList.get( i ).title));
-//                Log.d( "----LIST------"
+
             }
 
             Log.d( "jjjjjjjj",String.valueOf(BookList.get( 0 ).title));
             ListGeneration();
-            
+
         } catch (Exception e) {
-            Toast.makeText( this, "Something went wrong!", Toast.LENGTH_LONG ).show();
+            Toast.makeText( this, "Ooppss.. Error Occured..!!", Toast.LENGTH_LONG ).show();
         }
     }
 
-
-
     ListView ViewBooklist;
-    ListAdapter listAdapter;
+    BookRating ratingList;
     private void ListGeneration(){
 
         ViewBooklist = (ListView) findViewById(R.id.booklist);
-        listAdapter = new com.example.suneh.sqlitelab7.ListAdapter(MainActivity.this, BookList);
-        ViewBooklist.setAdapter(listAdapter);
+        ratingList = new com.example.suneh.sqlitelab7.BookRating(MainActivity.this, BookList);
+        ViewBooklist.setAdapter(ratingList);
 
 
     }
