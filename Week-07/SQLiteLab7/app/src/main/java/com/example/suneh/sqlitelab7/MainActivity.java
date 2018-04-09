@@ -1,27 +1,26 @@
 package com.example.suneh.sqlitelab7;
 
-import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
-import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
-import android.widget.ArrayAdapter;
-import android.widget.Spinner;
-import android.widget.ListView;
-import android.widget.SimpleCursorAdapter;
-import android.widget.Toast;
 
-import android.util.Log;
-import android.widget.ListAdapter;
-import android.widget.AdapterView;
-import android.widget.AdapterView.OnItemSelectedListener;
-import android.view.View;
-import java.util.*;
-import java.util.List;
-import java.util.SimpleTimeZone;
+        import android.database.Cursor;
+        import android.database.sqlite.SQLiteDatabase;
+        import android.os.Bundle;
+        import android.support.v7.app.AppCompatActivity;
+        import android.util.Log;
+        import android.widget.ListAdapter;
+        import android.widget.ArrayAdapter;
+        import android.widget.Spinner;
+        import android.widget.ListView;
+        import android.widget.SimpleCursorAdapter;
+        import android.widget.Toast;
+        import android.widget.AdapterView;
+        import android.widget.AdapterView.OnItemSelectedListener;
+        import android.view.View;
+
+        import java.util.*;
+        import java.util.SimpleTimeZone;
 
 
 public class MainActivity extends AppCompatActivity implements OnItemSelectedListener{
-
     ListView listView;
     SQLiteDatabase sqLiteDatabase;
     SQLHelper sqlHelper;
@@ -30,7 +29,7 @@ public class MainActivity extends AppCompatActivity implements OnItemSelectedLis
     ArrayAdapter<String> adapter;
     ArrayList<String> title;
 
-    List<Book> newBooksList;
+    List<Book> BookList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,7 +42,7 @@ public class MainActivity extends AppCompatActivity implements OnItemSelectedLis
 
 
 
- /*   public void spinnerFunction(){
+    /*public void spinnerFunction(){
 
         spinner = (Spinner)findViewById(R.id.spinner);
 
@@ -57,7 +56,7 @@ public class MainActivity extends AppCompatActivity implements OnItemSelectedLis
             @Override
                 public void OnItemSelected(AdapterView<?> adapterView, View view, int i, long l){
 
-                Toast.makeText(MainActivity.this,newBooksList.get( i ).author,Toast.LENGHT_SHORT).show();
+                Toast.makeText(MainActivity.this,BookList.get( i ).author,Toast.LENGHT_SHORT).show();
             }
 
             @Override
@@ -73,14 +72,13 @@ public class MainActivity extends AppCompatActivity implements OnItemSelectedLis
         //spinner.setAdapter(adapter);
     //}
 
-
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
         // On selecting a spinner item
         //String item = parent.getItemAtPosition(position).toString();
         //  Log.d( "00000000000000000","");
         // Showing selected spinner item
-        Toast.makeText(parent.getContext(), "Author's Name: "+newBooksList.get( position ).author+"\nRating: "+newBooksList.get( position ).rating, Toast.LENGTH_LONG).show();
+        Toast.makeText(parent.getContext(), "Author's Name: "+BookList.get( position ).author+"\nRating: "+BookList.get( position ).rating, Toast.LENGTH_LONG).show();
     }
 
     public void onNothingSelected(AdapterView<?> arg0) {
@@ -102,20 +100,20 @@ public class MainActivity extends AppCompatActivity implements OnItemSelectedLis
             db.addBook( new Book( "Hello, Android", "Wallace Jackson",5 ) );
 
 
-            newBooksList = db.getAllBooks();
+            BookList = db.getAllBooks();
 
             title = new ArrayList<String>();
 
 
-            for(int i=0;i<newBooksList.size();i++){
+            for(int i=0;i<BookList.size();i++){
 
-                title.add(String.valueOf(newBooksList.get( i ).title));
+                title.add(String.valueOf(BookList.get( i ).title));
 //                Log.d( "----LIST------"
             }
 
-            Log.d( "jjjjjjjj",String.valueOf(newBooksList.get( 0 ).title));
-            ListGenerator();
-
+            Log.d( "jjjjjjjj",String.valueOf(BookList.get( 0 ).title));
+            ListGeneration();
+            
         } catch (Exception e) {
             Toast.makeText( this, "Something went wrong!", Toast.LENGTH_LONG ).show();
         }
@@ -123,15 +121,13 @@ public class MainActivity extends AppCompatActivity implements OnItemSelectedLis
 
 
 
-    ListView BooklistView;
+    ListView ViewBooklist;
     ListAdapter listAdapter;
-    //List listAdapter;
-    private void ListGenerator(){
+    private void ListGeneration(){
 
-        BooklistView = (ListView) findViewById(R.id.booklist);
-        listAdapter = new com.example.suneh.sqlitelab7.ListAdapter(MainActivity.this, newBooksList );
-        BooklistView.setAdapter(listAdapter);
-
+        ViewBooklist = (ListView) findViewById(R.id.booklist);
+        listAdapter = new com.example.suneh.sqlitelab7.ListAdapter(MainActivity.this, BookList);
+        ViewBooklist.setAdapter(listAdapter);
 
 
     }
@@ -139,3 +135,4 @@ public class MainActivity extends AppCompatActivity implements OnItemSelectedLis
 
 
 }
+
