@@ -18,7 +18,7 @@ import android.database.Cursor;
 public class SQLHelper extends SQLiteOpenHelper {
 
     public static final int DATABASE_VERSION = 1;
-    public static final String DB_NAME = "BooksDatabase";
+    public static final String DB_NAME = "BooksDb";
     public static final String DB_LOCATION = "/data/data/com.example.suneh.dbanalyticsproject/databases/";
     public static Context context;
     public static SQLiteDatabase database;
