@@ -2,7 +2,7 @@
 
 ### Part 1: Rating bar
 
-![](images/image6.PNG  )
+![](images/image7.PNG  )
 
 ### Part 2: Spinner 
 
